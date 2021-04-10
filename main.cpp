@@ -1,25 +1,26 @@
 #include <iostream>
 
 #include "binary_search_tree.hpp"
+#include "traversal_algorithm.hpp"
 
 using namespace itis;
 
 int main(int argc, char **argv) {
 
-  BinaryTree tree;
+  BinarySearchTree tree;
 
-  tree.Clear();
+  tree.Insert("F");
+  tree.Insert("B");
+  tree.Insert("G");
+  tree.Insert("A");
+  tree.Insert("D");
+  tree.Insert("C");
+  tree.Insert("E");
+  tree.Insert("I");
+  tree.Insert("H");
 
-  tree.Insert("3");
-
-  tree.Insert("1");
-
-  tree.Insert("4");
-
-  Node* found_node = tree.Search("1");
-  found_node = tree.Search("6");
-
-  tree.Clear();
+  DepthFirstTraversalAlgorithm algorithm;
+  tree.Traverse(algorithm);
 
   return 0;
 }
