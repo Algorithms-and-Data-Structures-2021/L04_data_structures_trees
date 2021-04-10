@@ -9,7 +9,9 @@ namespace itis {
 struct BinaryTree final {
   BinaryTree() = default;
 
-  ~BinaryTree() { Clear(); }
+  ~BinaryTree() {
+    Clear();
+  }
 
   void Insert(const std::string &key) {
     if (root_ != nullptr) {
