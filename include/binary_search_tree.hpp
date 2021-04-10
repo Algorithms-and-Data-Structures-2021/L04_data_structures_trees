@@ -7,7 +7,6 @@
 namespace itis {
 
 struct BinaryTree final {
-  BinaryTree() = default;
 
   ~BinaryTree() {
     Clear();
