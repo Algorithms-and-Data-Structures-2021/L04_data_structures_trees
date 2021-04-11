@@ -1,7 +1,7 @@
 #include "traversal_algorithm.hpp"
 
 #include <queue> // for breadth-first traversal (level order traversal)
-#include <stack>  // for depth-first traversal (pre-order traversal)
+#include <stack> // for depth-first traversal (pre-order traversal)
 
 namespace itis {
 
@@ -50,13 +50,14 @@ void BreadthFirstTraversalAlgorithm::Print(std::ostream &os, Node *node) {
 }
 
 void DepthFirstTraversalAlgorithm::Print(std::ostream &os, Node *node) {
-  if (node == nullptr) return;
+  if (node == nullptr)
+    return;
 
-  std::stack<Node*> nodes_stack;
+  std::stack<Node *> nodes_stack;
   nodes_stack.push(node);
 
   while (!nodes_stack.empty()) {
-    Node* curr_node = nodes_stack.top();
+    Node *curr_node = nodes_stack.top();
     nodes_stack.pop();
 
     os << curr_node->key << '\t';
