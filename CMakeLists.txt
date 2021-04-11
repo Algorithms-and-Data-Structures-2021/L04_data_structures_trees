@@ -6,12 +6,13 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(bst_tree STATIC
-        src/node.cpp include/node.hpp
-        src/traversal_algorithm.cpp include/traversal_algorithm.hpp
-        src/binary_search_tree.cpp include/binary_search_tree.hpp)
+# header-only library
+add_library(bst_tree INTERFACE
+        include/node.hpp
+        include/binary_search_tree.hpp
+        include/traversal_algorithm.hpp)
 
-target_include_directories(bst_tree PUBLIC include)
+target_include_directories(bst_tree INTERFACE include)
 
 # add executables
 add_executable(main main.cpp)
