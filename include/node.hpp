@@ -10,18 +10,18 @@ struct Node {
   Node *left;
   Node *right;
 
-  Node(const std::string &key, Node *left, Node *right)
-      : key{key}, left{left}, right{right} {}
-};
+  Node(const std::string &key, Node *l, Node *r)
+      : key{key}, left{l}, right{r} {}
 
-/**
- * IsRoot
- * IsLeaf
- * degree (
- * parent
- * children
- * insert(Node* parent)
- * size - number of nodes in a tree
- */
+  bool IsLeaf() const {
+    return left == nullptr && right == nullptr;
+  }
+
+  int degree() const {
+    if (left == nullptr && right == nullptr) return 0;
+    if (left != nullptr && right != nullptr) return 2;
+    return 1;
+  }
+};
 
 } // namespace itis

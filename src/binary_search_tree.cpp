@@ -6,7 +6,9 @@
 
 namespace itis {
 
-BinarySearchTree::~BinarySearchTree() { Clear(); }
+BinarySearchTree::~BinarySearchTree() {
+  Clear();
+}
 
 void BinarySearchTree::Insert(const std::string &key) {
   if (root_ != nullptr) {
@@ -43,7 +45,7 @@ void BinarySearchTree::insert(const std::string &key, Node *node) {
       node->left = new Node(key, nullptr, nullptr);
     }
 
-  } else {
+  } else {  // key >= node->key
 
     if (node->right != nullptr) {
       insert(key, node->right);
@@ -67,7 +69,41 @@ Node *BinarySearchTree::search(const std::string &key, Node *node) const {
   return nullptr;
 }
 
-Node *BinarySearchTree::root() const { return root_; }
+Node *findMin(Node* node) {
+  if (node == nullptr) return nullptr;
+  if (node->left == nullptr) return node;
+  return findMin(node->left);
+}
+
+Node *findMax(Node* node) {
+  if (node == nullptr) return nullptr;
+  if (node->right == nullptr) return node;
+  return findMax(node->right);
+}
+
+Node *BinarySearchTree::remove(const std::string& key, Node* node) {
+  if (node == nullptr) return nullptr;
+
+  if (key < node->key) {
+    node->left = remove(key, node->left);
+  } else if (key > node->key) {
+    node->right = remove(key, node->right);
+  } else if (node->degree() == 2) {
+    Node* tmp = findMin(node->right);
+    node->key = tmp->key;
+    node->right = remove(node->key, node->right);
+  } else {
+    Node* tmp = node;
+    if (node->left == nullptr) {
+      node = node->right;
+    } else {
+      node = node->left;
+    }
+    delete tmp;
+  }
+
+  return node;
+}
 
 void BinarySearchTree::Traverse(TraversalAlgorithm &algorithm) const {
   algorithm.Print(std::cout, root_);
