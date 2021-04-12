@@ -5,7 +5,7 @@ using namespace itis;
 
 int main(int argc, char **argv) {
 
-  BinarySearchTree<int> tree;
+  BinarySearchTree tree;
 
   tree.Insert(50);
   tree.Insert(30);
@@ -15,11 +15,11 @@ int main(int argc, char **argv) {
   tree.Insert(60);
   tree.Insert(80);
 
-  tree.Remove(20);
-  tree.Remove(30);
-  tree.Remove(50);
+//  tree.Remove(20);
+//  tree.Remove(30);
+//  tree.Remove(50);
 
-  BreadthFirstTraversalAlgorithm<int> algorithm;
+  BreadthFirstTraversalAlgorithm algorithm;
   tree.Traverse(algorithm);
 
   return 0;

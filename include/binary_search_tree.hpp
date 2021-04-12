@@ -1,66 +1,60 @@
 #pragma once
 
-#include <iostream>
+#include <iostream>  // cout
 
 #include "node.hpp"
 #include "traversal_algorithm.hpp"
 
 namespace itis {
 
-  template<typename T = int>
   struct BinarySearchTree final {
     void Clear();
-    void Insert(const T &key);
-    void Remove(const T &key);
-    Node<T> *Search(const T &key) const;
-    void Traverse(TraversalAlgorithm<T> &algorithm) const;
+    void Insert(int key);
+    void Remove(int key);
+    Node *Search(int key) const;
+    void Traverse(const TraversalAlgorithm &algorithm) const;
 
     ~BinarySearchTree();
 
    private:
-    Node<T> *root_{nullptr};
+    Node *root_{nullptr};
 
-    void clear(Node<T> *node);
-    void insert(const T &key, Node<T> *node);
-    Node<T> *remove(const T &key, Node<T> *node);
-    Node<T> *search(const T &key, Node<T> *node) const;
+    void clear(Node *node);
+    void insert(int key, Node *node);
+    Node *remove(int key, Node *node);
+    Node *search(int key, Node *node) const;
 
-    Node<T> *findMin(Node<T> *node) const;
+    Node *findMin(Node *node) const;
   };
 
-  template<typename T>
-  BinarySearchTree<T>::~BinarySearchTree() {
+  BinarySearchTree::~BinarySearchTree() {
     Clear();
   }
 
-  template<typename T>
-  void BinarySearchTree<T>::Insert(const T &key) {
+  void BinarySearchTree::Insert(int key) {
     if (root_ != nullptr) {
       insert(key, root_);
     } else {
-      root_ = new Node<T>(key);
+      root_ = new Node(key);
     }
   }
 
-  template<typename T>
-  void BinarySearchTree<T>::insert(const T &key, Node<T> *node) {
+  void BinarySearchTree::insert(int key, Node *node) {
     // Task 1: перепишите рекурсивную реализацию в итеративную
     auto &insert_node = key < node->key ? node->left : node->right;
 
     if (insert_node != nullptr) {
       insert(key, insert_node);
     } else {
-      insert_node = new Node<T>(key);
+      insert_node = new Node(key);
     }
   }
 
-  template<typename T>
-  Node<T> *BinarySearchTree<T>::Search(const T &key) const {
+  Node *BinarySearchTree::Search(int key) const {
     return search(key, root_);
   }
 
-  template<typename T>
-  Node<T> *BinarySearchTree<T>::search(const T &key, Node<T> *node) const {
+  Node *BinarySearchTree::search(int key, Node *node) const {
     // Task 2: перепишите рекурсивную реализацию в итеративную
     if (node != nullptr) {
 
@@ -80,14 +74,12 @@ namespace itis {
     return nullptr;  // not found
   }
 
-  template<typename T>
-  void BinarySearchTree<T>::Clear() {
+  void BinarySearchTree::Clear() {
     clear(root_);
     root_ = nullptr;
   }
 
-  template<typename T>
-  void BinarySearchTree<T>::clear(Node<T> *node) {
+  void BinarySearchTree::clear(Node *node) {
     if (node != nullptr) {
       clear(node->left);
       clear(node->right);
@@ -95,13 +87,11 @@ namespace itis {
     }
   }
 
-  template<typename T>
-  void BinarySearchTree<T>::Remove(const T &key) {
+  void BinarySearchTree::Remove(int key) {
     remove(key, root_);
   }
 
-  template<typename T>
-  Node<T> *BinarySearchTree<T>::remove(const T &key, Node<T> *node) {
+  Node *BinarySearchTree::remove(int key, Node *node) {
     if (node == nullptr) {
       return nullptr;
     }
@@ -111,11 +101,11 @@ namespace itis {
     } else if (key > node->key) {
       node->right = remove(key, node->right);
     } else if (node->degree() == 2) {
-      Node<T> *tmp = findMin(node->right);
+      Node *tmp = findMin(node->right);
       node->key = tmp->key;
       node->right = remove(node->key, node->right);
     } else {
-      Node<T> *tmp = node;
+      Node *tmp = node;
 
       if (node->left == nullptr) {
         node = node->right;
@@ -128,8 +118,7 @@ namespace itis {
     return node;
   }
 
-  template<typename T>
-  Node<T> *BinarySearchTree<T>::findMin(Node<T> *node) const {
+  Node *BinarySearchTree::findMin(Node *node) const {
     if (node == nullptr) {
       return nullptr;
     }
@@ -142,8 +131,7 @@ namespace itis {
     return findMin(node->left);
   }
 
-  template<typename T>
-  void BinarySearchTree<T>::Traverse(TraversalAlgorithm<T> &algorithm) const {
+  void BinarySearchTree::Traverse(const TraversalAlgorithm &algorithm) const {
     algorithm.Print(std::cout, root_);
   }
 

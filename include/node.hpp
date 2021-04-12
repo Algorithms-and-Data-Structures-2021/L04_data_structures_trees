@@ -2,30 +2,22 @@
 
 namespace itis {
 
-  template<class T = int>
-  struct Node {
-    T key;
-    Node *left;
-    Node *right;
+  struct Node final {
+    int key;
+    Node *left{nullptr};
+    Node *right{nullptr};
 
-    explicit Node(const T &key, Node *l = nullptr, Node *r = nullptr);
+    /**
+     * Создание узла дерева с определенным значением ключа.
+     * @param key - значение хранимого ключа
+     */
+    explicit Node(int key);
 
+    /**
+     * Кол-во детей у узла дерева.
+     * @return неотрицательное число в интервале [0..2]
+     */
     int degree() const;
   };
-
-  template<class T>
-  Node<T>::Node(const T &key, Node *l, Node *r) : key{key}, left{l}, right{r} {}
-
-  template<class T>
-  int Node<T>::degree() const {
-    if (left == nullptr && right == nullptr) {
-      return 0;
-    }
-
-    if (left != nullptr && right != nullptr) {
-      return 2;
-    }
-    return 1;
-  }
 
 }  // namespace itis
