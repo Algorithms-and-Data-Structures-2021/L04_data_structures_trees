@@ -2,38 +2,30 @@
 
 namespace itis {
 
-template<class T = int>
-struct Node {
-  T key;
+  template<class T = int>
+  struct Node {
+    T key;
+    Node *left;
+    Node *right;
 
-  Node *left;
+    explicit Node(const T &key, Node *l = nullptr, Node *r = nullptr);
 
-  Node *right;
+    int degree() const;
+  };
 
-  Node(const T &key, Node *l = nullptr, Node *r = nullptr);
+  template<class T>
+  Node<T>::Node(const T &key, Node *l, Node *r) : key{key}, left{l}, right{r} {}
 
-  bool IsLeaf() const;
+  template<class T>
+  int Node<T>::degree() const {
+    if (left == nullptr && right == nullptr) {
+      return 0;
+    }
 
-  int degree() const;
-};
-
-template<class T>
-Node<T>::Node(const T &key, Node *l, Node *r)
-    : key{key}, left{l}, right{r} {}
-
-template<class T>
-bool Node<T>::IsLeaf() const { return left == nullptr && right == nullptr; }
-
-template<class T>
-int Node<T>::degree() const {
-  if (left == nullptr && right == nullptr) {
-    return 0;
+    if (left != nullptr && right != nullptr) {
+      return 2;
+    }
+    return 1;
   }
 
-  if (left != nullptr && right != nullptr) {
-    return 2;
-  }
-  return 1;
-}
-
-} // namespace itis
+}  // namespace itis
