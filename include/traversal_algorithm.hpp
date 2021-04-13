@@ -28,6 +28,7 @@ namespace itis {
     void Print(std::ostream &os, Node *node) const override;
   };
 
+  // In-order, Pre-order, Post-order based on stack (non-recursive)
   struct DepthFirstTraversalAlgorithm final : TraversalAlgorithm {
     void Print(std::ostream &os, Node *node) const override;
   };

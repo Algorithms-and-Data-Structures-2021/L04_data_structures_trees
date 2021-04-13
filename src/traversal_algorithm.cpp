@@ -49,6 +49,7 @@ namespace itis {
     }
   }
 
+  // Pre-order (NLR)
   void DepthFirstTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     if (node == nullptr) {
       return;
