@@ -22,5 +22,9 @@ int main(int argc, char **argv) {
   BreadthFirstTraversalAlgorithm algorithm;
   tree.Traverse(algorithm);
 
+  // Tasks
+  // 1. Даны два дерева t1 и t2. Получить список общих ключей двух деревьев.
+  // 2. Переписать реализацию BST-дерева, чтобы оно хранило пару (key: int, value: string).
+
   return 0;
 }

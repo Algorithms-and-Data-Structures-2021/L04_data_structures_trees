@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # header-only library
 add_library(bst_tree STATIC
         include/node.hpp src/node.cpp
-        include/binary_search_tree.hpp
+        include/binary_search_tree.hpp src/binary_search_tree.cpp
         include/traversal_algorithm.hpp src/traversal_algorithm.cpp)
 
 target_include_directories(bst_tree PUBLIC include)
