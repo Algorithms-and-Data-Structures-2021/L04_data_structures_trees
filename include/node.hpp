@@ -6,12 +6,13 @@ namespace itis {
     int key;
     Node *left{nullptr};
     Node *right{nullptr};
+    Node *parent_{nullptr};
 
     /**
      * Создание узла дерева с определенным значением ключа.
      * @param key - значение хранимого ключа
      */
-    explicit Node(int key);
+    explicit Node(int key, Node* p = nullptr);
 
     /**
      * Кол-во детей у узла дерева.

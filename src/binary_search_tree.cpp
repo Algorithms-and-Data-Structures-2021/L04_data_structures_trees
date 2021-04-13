@@ -21,7 +21,7 @@ namespace itis {
     if (insert_node != nullptr) {
       insert(key, insert_node);
     } else {
-      insert_node = new Node(key);
+      insert_node = new Node(key, node);
     }
   }
 
@@ -34,6 +34,7 @@ namespace itis {
     if (node != nullptr) {
 
       if (key == node->key) {
+        // found it!
         return node;
       }
 
@@ -46,7 +47,7 @@ namespace itis {
       return search(key, node->right);
     }
 
-    return nullptr;  // not found
+    return nullptr;  // not found :(
   }
 
   void BinarySearchTree::Clear() {
@@ -66,31 +67,61 @@ namespace itis {
     remove(key, root_);
   }
 
-  Node *BinarySearchTree::remove(int key, Node *node) {
+  void BinarySearchTree::remove(int key, Node *node) {
+    // Task 3: найдите ошибки в реализации и исправьте их
+
     if (node == nullptr) {
-      return nullptr;
+      return;
     }
 
     if (key < node->key) {
-      node->left = remove(key, node->left);
+      // recursively remove from the left sub-tree
+      remove(key, node->left);
+
     } else if (key > node->key) {
-      node->right = remove(key, node->right);
-    } else if (node->degree() == 2) {
-      Node *tmp = findMin(node->right);
-      node->key = tmp->key;
-      node->right = remove(node->key, node->right);
+      // recursively remove from the right sub-tree
+      remove(key, node->right);
+
     } else {
-      Node *tmp = node;
+      // found the node to remove!
 
-      if (node->left == nullptr) {
-        node = node->right;
+      // case 1: no children
+      if (node->degree() == 0) {
+
+        if (node->key < node->parent_->key) {
+          node->parent_->left = nullptr;
+        } else {
+          node->parent_->right = nullptr;
+        }
+
+        delete node;
+
+      } else if (node->degree() == 2) {
+
+        // case 2: there are 2 children
+
+        Node *min_node = findMin(node->right);  // the leftmost node
+
+        if (min_node->degree() == 0) {
+          node->key = min_node->key;
+          min_node->parent_->left = nullptr;  // надо ли это?
+          delete min_node;
+
+        } else {
+          node->key = min_node->key;
+          min_node->parent_->left = min_node->right;
+          delete min_node;
+        }
+
       } else {
-        node = node->left;
-      }
-      delete tmp;
-    }
 
-    return node;
+        // case 3: there is 1 child
+
+        // TBD
+
+        delete node;
+      }
+    }
   }
 
   Node *BinarySearchTree::findMin(Node *node) const {

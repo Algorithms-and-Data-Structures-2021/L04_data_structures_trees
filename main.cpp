@@ -1,3 +1,5 @@
+#include <iostream>  // cout
+
 #include "binary_search_tree.hpp"
 #include "traversal_algorithm.hpp"
 
@@ -7,24 +9,49 @@ int main(int argc, char **argv) {
 
   BinarySearchTree tree;
 
-  tree.Insert(50);
-  tree.Insert(30);
-  tree.Insert(70);
-  tree.Insert(20);
-  tree.Insert(40);
-  tree.Insert(60);
-  tree.Insert(80);
+  /**
+   *         8
+   *    3       10
+   * 1     6        14
+   *     4   7    13
+   */
 
-//  tree.Remove(20);
-//  tree.Remove(30);
-//  tree.Remove(50);
+  tree.Insert(8);
+  tree.Insert(3);
+  tree.Insert(10);
+  tree.Insert(1);
+  tree.Insert(6);
+  tree.Insert(4);
+  tree.Insert(7);
+  tree.Insert(14);
+  tree.Insert(13);
 
-  BreadthFirstTraversalAlgorithm algorithm;
-  tree.Traverse(algorithm);
+//  tree.Remove(4);
+//  tree.Remove(6);
+//  tree.Remove(8);
+
+  // обход в порядке возрастания ключей
+  TraversalAlgorithm* algorithm = new InOrderTraversalAlgorithm;
+
+  tree.Traverse(*algorithm);
+  std::cout << std::endl;
+
+  algorithm = new PreOrderTraversalAlgorithm;
+
+  tree.Traverse(*algorithm);
+  std::cout << std::endl;
+
+  algorithm = new PostOrderTraversalAlgorithm;
+
+  tree.Traverse(*algorithm);
+  std::cout << std::endl;
+
+  delete algorithm;
 
   // Tasks
   // 1. Даны два дерева t1 и t2. Получить список общих ключей двух деревьев.
   // 2. Переписать реализацию BST-дерева, чтобы оно хранило пару (key: int, value: string).
+
 
   return 0;
 }

@@ -21,7 +21,7 @@ namespace itis {
 
     void clear(Node *node);
     void insert(int key, Node *node);
-    Node *remove(int key, Node *node);
+    void remove(int key, Node *node);
     Node *search(int key, Node *node) const;
 
     Node *findMin(Node *node) const;
