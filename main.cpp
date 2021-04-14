@@ -5,7 +5,7 @@
 
 using namespace itis;
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
 
   BinarySearchTree tree;
 
@@ -26,9 +26,12 @@ int main(int argc, char **argv) {
   tree.Insert(14);
   tree.Insert(13);
 
-//  tree.Remove(4);
-//  tree.Remove(6);
-//  tree.Remove(8);
+//    tree.Remove(3);
+  //  tree.Remove(7);
+  //  tree.Remove(13);
+  //  tree.Remove(14);
+  //  tree.Remove(6);
+  //  tree.Remove(8);
 
   // обход в порядке возрастания ключей
   TraversalAlgorithm* algorithm = new InOrderTraversalAlgorithm;
@@ -49,9 +52,10 @@ int main(int argc, char **argv) {
   delete algorithm;
 
   // Tasks
-  // 1. Даны два дерева t1 и t2. Получить список общих ключей двух деревьев.
-  // 2. Переписать реализацию BST-дерева, чтобы оно хранило пару (key: int, value: string).
-
+  // 1. Даны два дерева t1 и t2. Получить список общих ключей двух деревьев.                (0.5 pts)
+  // 2. Переписать реализацию BST-дерева, чтобы оно хранило пару (key: int, value: string). (0.5 pts)
+  // 3. Перепишите рекурсивные реализации поиска и добавления на итеративные.               (0.5 pts)
+  // 4. Реализуйте до конца метод BinarySearchTree::Remove(key).                            (1 pt)
 
   return 0;
 }

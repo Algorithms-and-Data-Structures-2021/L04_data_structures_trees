@@ -11,8 +11,9 @@ namespace itis {
     /**
      * Создание узла дерева с определенным значением ключа.
      * @param key - значение хранимого ключа
+     * @param p - указатель на родительский узел
      */
-    explicit Node(int key, Node* p = nullptr);
+    explicit Node(int key, Node *p = nullptr);
 
     /**
      * Кол-во детей у узла дерева.
