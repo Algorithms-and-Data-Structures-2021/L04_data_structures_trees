@@ -12,6 +12,7 @@ namespace itis {
     void Insert(int key);
     void Remove(int key);
     Node *Search(int key) const;
+
     void Traverse(const TraversalAlgorithm &algorithm) const;
 
     ~BinarySearchTree();

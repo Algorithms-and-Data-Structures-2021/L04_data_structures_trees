@@ -82,11 +82,11 @@ namespace itis {
       // recursively remove from the right sub-tree
       remove(key, node->right);
 
-    } else {
-      // found the node to remove!
+    } else {  // found the node to remove!
 
-      // case 1: no children
       if (node->degree() == 0) {
+
+        // case 1: no children
 
         if (node->key < node->parent_->key) {
           node->parent_->left = nullptr;
@@ -101,25 +101,20 @@ namespace itis {
         // case 2: there are 2 children
 
         Node *min_node = findMin(node->right);  // the leftmost node
+        node->key = min_node->key;
 
         if (min_node->degree() == 0) {
-          node->key = min_node->key;
           min_node->parent_->left = nullptr;  // надо ли это?
-          delete min_node;
-
         } else {
-          node->key = min_node->key;
           min_node->parent_->left = min_node->right;
-          delete min_node;
         }
+
+        delete min_node;
 
       } else {
 
         // case 3: there is 1 child
-
         // TBD
-
-        delete node;
       }
     }
   }

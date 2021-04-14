@@ -23,6 +23,7 @@ namespace itis {
     }
   }
 
+  // L R N
   void PostOrderTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     if (node != nullptr) {
       Print(os, node->left);
