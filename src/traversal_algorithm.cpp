@@ -5,6 +5,7 @@
 
 namespace itis {
 
+  // L N R
   void InOrderTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     if (node != nullptr) {
       Print(os, node->left);
@@ -13,6 +14,7 @@ namespace itis {
     }
   }
 
+  // N L R
   void PreOrderTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     if (node != nullptr) {
       os << node->key << '\t';
@@ -29,6 +31,7 @@ namespace itis {
     }
   }
 
+  // from to to bottom, from left to right
   void BreadthFirstTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     std::queue<Node *> nodes_queue;
     nodes_queue.push(node);
@@ -49,7 +52,7 @@ namespace itis {
     }
   }
 
-  // Pre-order (NLR)
+  // N L R on stack
   void DepthFirstTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     if (node == nullptr) {
       return;
