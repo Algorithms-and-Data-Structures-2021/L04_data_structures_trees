@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
   tree.Insert(14);
   tree.Insert(13);
 
-//    tree.Remove(3);
+//    tree.Remove(4);
   //  tree.Remove(7);
   //  tree.Remove(13);
   //  tree.Remove(14);
@@ -35,19 +35,21 @@ int main(int argc, char** argv) {
 
   // обход в порядке возрастания ключей
   TraversalAlgorithm* algorithm = new InOrderTraversalAlgorithm;
-
   tree.Traverse(*algorithm);
   std::cout << std::endl;
 
   algorithm = new PreOrderTraversalAlgorithm;
-
   tree.Traverse(*algorithm);
   std::cout << std::endl;
 
   algorithm = new PostOrderTraversalAlgorithm;
-
   tree.Traverse(*algorithm);
   std::cout << std::endl;
+
+  algorithm = new BreadthFirstTraversalAlgorithm;
+  tree.Traverse(*algorithm);
+  std::cout << std::endl;
+
 
   delete algorithm;
 
