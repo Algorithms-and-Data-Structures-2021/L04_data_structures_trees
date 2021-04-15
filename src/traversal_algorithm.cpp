@@ -5,7 +5,7 @@
 
 namespace itis {
 
-  // L N R
+  // инфиксный обход - L(left) N(node) R(right)
   void InOrderTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     if (node != nullptr) {
       Print(os, node->left);
@@ -14,7 +14,7 @@ namespace itis {
     }
   }
 
-  // N L R
+  // префиксный обход - N(node) L(left) R(right)
   void PreOrderTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     if (node != nullptr) {
       os << node->key << '\t';
@@ -23,7 +23,7 @@ namespace itis {
     }
   }
 
-  // L R N
+  // постфиксный обход - L(left) R(right) N(node)
   void PostOrderTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     if (node != nullptr) {
       Print(os, node->left);
@@ -32,7 +32,7 @@ namespace itis {
     }
   }
 
-  // from to to bottom, from left to right
+  // обход в ширину - слева направо, сверху вниз
   void BreadthFirstTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     std::queue<Node *> nodes_queue;
     nodes_queue.push(node);
@@ -53,7 +53,7 @@ namespace itis {
     }
   }
 
-  // N L R on stack
+  // префиксный обход (NLR) на базе стека
   void DepthFirstTraversalAlgorithm::Print(std::ostream &os, Node *node) const {
     if (node == nullptr) {
       return;
