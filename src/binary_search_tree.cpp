@@ -17,7 +17,6 @@ namespace itis {
   }
 
   void BinarySearchTree::insert(int key, Node *node) {
-    // Task 1: перепишите рекурсивную реализацию в итеративную
     auto &insert_node = key < node->key ? node->left : node->right;
 
     if (insert_node != nullptr) {
@@ -32,12 +31,10 @@ namespace itis {
   }
 
   Node *BinarySearchTree::search(int key, Node *node) const {
-    // Task 2: перепишите рекурсивную реализацию в итеративную
     if (node != nullptr) {
 
       if (key == node->key) {
-        // found it!
-        return node;
+        return node;  // узел найден, возвращаем его!
       }
 
       if (key < node->key) {
@@ -70,7 +67,7 @@ namespace itis {
   }
 
   void BinarySearchTree::remove(int key, Node *node) {
-    // Task 3: найдите ошибки в реализации и исправьте их
+    // Примечение: найдите ошибки в реализации и исправьте их.
 
     if (node == nullptr) {
       return;
@@ -115,7 +112,7 @@ namespace itis {
 
       } else {
 
-        // case 3: there is 1 child
+        // case 3: there is only 1 child
         // TBD
       }
     }
