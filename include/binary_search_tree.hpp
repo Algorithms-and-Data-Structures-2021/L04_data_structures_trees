@@ -1,7 +1,5 @@
 #pragma once
 
-#include <iostream>  // cout
-
 #include "node.hpp"
 #include "traversal_algorithm.hpp"
 
@@ -13,6 +11,7 @@ namespace itis {
     void Remove(int key);
     Node *Search(int key) const;
 
+    // обход дерева на базе указанного алгоритма
     void Traverse(const TraversalAlgorithm &algorithm) const;
 
     ~BinarySearchTree();
