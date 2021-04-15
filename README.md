@@ -7,7 +7,7 @@
 3. `Search(key)` - searches for the node with a specified key value.
 4. `Traverse(algorithm)` - traverses a binary tree using an algorithm (In-order, Pre-order, Post-order, BFS, DFS).
 
-## Task for students
+## Tasks
 
 1. (**0.5 баллов**) Даны два дерева `t1` и `t2`. Получить список общих уникальных ключей двух деревьев.
 2. (**0.5 баллов**) Переписать реализацию BST-дерева, чтобы оно хранило пару ключ-значение (key: int, value: string).
