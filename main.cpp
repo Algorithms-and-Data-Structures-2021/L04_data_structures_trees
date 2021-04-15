@@ -1,5 +1,4 @@
 #include <iostream>  // cout
-#include <array>
 
 #include "binary_search_tree.hpp"
 #include "traversal_algorithm.hpp"
@@ -54,18 +53,13 @@ int main(int argc, char** argv) {
   tree.Traverse(*algorithm);
   std::cout << std::endl;
 
-  std::cout << "Level-order (BFS): ";
   algorithm = new BreadthFirstTraversalAlgorithm;
+  
+  std::cout << "Level-order (BFS): ";
   tree.Traverse(*algorithm);
   std::cout << std::endl;
 
   delete algorithm;
-
-  // Tasks
-  // 1. Даны два дерева t1 и t2. Получить список общих ключей двух деревьев.                (0.5 pts)
-  // 2. Переписать реализацию BST-дерева, чтобы оно хранило пару (key: int, value: string). (0.5 pts)
-  // 3. Перепишите рекурсивные реализации поиска и добавления на итеративные.               (0.5 pts)
-  // 4. Реализуйте до конца метод BinarySearchTree::Remove(key).                            (1 pt)
 
   return 0;
 }
