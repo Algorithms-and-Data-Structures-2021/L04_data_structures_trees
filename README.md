@@ -9,10 +9,7 @@
 
 ## Task for students
 
-Rewrite all recursive methods into iterative ones.
-
-ToDo:
-
-- [ ] Pictures
-- [ ] GIF animations
-- [ ] Operations overview
+1. Даны два дерева t1 и t2. Получить список общих уникальных ключей двух деревьев.
+2. Переписать реализацию BST-дерева, чтобы оно хранило пару ключ-значение (key: int, value: string).
+3. Перепишите рекурсивные реализации поиска и добавления на итеративные.
+4. Реализуйте метод BinarySearchTree::Remove(key).
