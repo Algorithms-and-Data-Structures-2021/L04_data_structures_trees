@@ -29,13 +29,13 @@ int main(int argc, char** argv) {
   tree.Insert(14);
   tree.Insert(13);
 
-//    tree.Remove(4);
+  //  tree.Remove(4);
   //  tree.Remove(7);
-    tree.Remove(14);  // <-- not working
+  //  tree.Remove(14);  // <-- not working
   //  tree.Remove(6);   // <-- not working
   //  tree.Remove(8);   // <-- not working
 
-  // обход в порядке возрастания (неубывания) ключей
+  // обход узлов дерева в порядке неубывания ключей
   TraversalAlgorithm* algorithm = new InOrderTraversalAlgorithm;
 
   std::cout << "In-order (LNR):    ";
