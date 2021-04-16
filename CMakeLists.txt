@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+option(BUILD_MAIN "Build main executable" OFF)
+
 # library
 add_library(${PROJECT_NAME} STATIC
         include/node.hpp src/node.cpp
@@ -19,6 +21,8 @@ add_library(BSTree::BSTree ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 
-# add executables
-add_executable(main main.cpp)
-target_link_libraries(main PRIVATE ${PROJECT_NAME})
+# add executables if enabled
+if (BUILD_MAIN)
+    add_executable(main main.cpp)
+    target_link_libraries(main PRIVATE ${PROJECT_NAME})
+endif ()
