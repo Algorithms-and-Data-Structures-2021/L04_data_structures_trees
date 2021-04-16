@@ -1,11 +1,25 @@
 #include "binary_search_tree.hpp"
 
 #include <iostream>  // cout
+#include <cassert>   // assert
 
 namespace itis {
 
   BinarySearchTree::~BinarySearchTree() {
     Clear();
+  }
+
+  void BinarySearchTree::Clear() {
+    clear(root_);
+    root_ = nullptr;
+  }
+
+  void BinarySearchTree::clear(Node *node) {
+    if (node != nullptr) {
+      clear(node->left);
+      clear(node->right);
+      delete node;
+    }
   }
 
   void BinarySearchTree::Insert(int key) {
@@ -22,7 +36,7 @@ namespace itis {
     if (insert_node != nullptr) {
       insert(key, insert_node);
     } else {
-      insert_node = new Node(key, node);
+      insert_node = new Node(key);
     }
   }
 
@@ -49,88 +63,87 @@ namespace itis {
     return nullptr;  // not found :(
   }
 
-  void BinarySearchTree::Clear() {
-    clear(root_);
-    root_ = nullptr;
-  }
-
-  void BinarySearchTree::clear(Node *node) {
-    if (node != nullptr) {
-      clear(node->left);
-      clear(node->right);
-      delete node;
-    }
-  }
-
   void BinarySearchTree::Remove(int key) {
     remove(key, root_);
   }
 
-  void BinarySearchTree::remove(int key, Node *node) {
+  Node *BinarySearchTree::remove(int key, Node *node) {
     // Примечение: найдите ошибки в реализации и исправьте их.
 
-    if (node == nullptr) {
-      return;
-    }
-
-    if (key < node->key) {
-      // recursively remove from the left sub-tree
-      remove(key, node->left);
-
-    } else if (key > node->key) {
-      // recursively remove from the right sub-tree
-      remove(key, node->right);
-
-    } else {  // found the node to remove!
-
-      if (node->degree() == 0) {
-
-        // case 1: no children
-
-        if (node->key < node->parent_->key) {
-          node->parent_->left = nullptr;
-        } else {
-          node->parent_->right = nullptr;
-        }
-
-        delete node;
-
-      } else if (node->degree() == 2) {
-
-        // case 2: there are 2 children
-
-        Node *min_node = findMin(node->right);  // the leftmost node
-        node->key = min_node->key;
-
-        if (min_node->degree() == 0) {
-          min_node->parent_->left = nullptr;  // надо ли это?
-        } else {
-          min_node->parent_->left = min_node->right;
-        }
-
-        delete min_node;
-
-      } else {
-
-        // case 3: there is only 1 child
-        // TBD
-      }
-    }
-  }
-
-  Node *BinarySearchTree::findMin(Node *node) const {
     if (node == nullptr) {
       return nullptr;
     }
 
-    // there is no min element in the right sub-tree
-    if (node->left == nullptr) {
-      return node;
+    if (key < node->key) {
+      // recursively remove from the left sub-tree
+      node->left = remove(key, node->left);
+
+    } else if (key > node->key) {
+      // recursively remove from the right sub-tree
+      node->right = remove(key, node->right);
+
+    } else {  // found the node to remove!
+
+      if (node->left == nullptr) {
+
+        // case 1: node with a right child or no children
+
+        Node *right_node = node->right;
+        delete node;
+        return right_node;
+
+      } else if (node->right == nullptr) {
+
+        // case 2: node with a left child
+
+        Node *left_child = node->left;
+        delete node;
+        return left_child;
+
+      } else {
+
+        // case 3: there are 2 children
+
+        Node *min_node = findMin(node->right);  // the leftmost node in the right sub-tree
+
+        node->key = min_node->key;
+
+        // recursively remove the node with a min key
+        node->right = remove(min_node->key, node->right);
+      }
     }
 
-    return findMin(node->left);
+    return node;
   }
 
+  Node *BinarySearchTree::findMin(Node *node) {
+    Node *min_node = node;
+
+    while (min_node->left != nullptr) {
+      min_node = min_node->left;
+    }
+
+    return min_node;
+  }
+
+  int BinarySearchTree::height() const {
+    return height(root_);
+  }
+
+  int BinarySearchTree::size() const {
+    return static_cast<int>(std::pow(2, height()) - 1);
+  }
+
+  int BinarySearchTree::height(Node *node) const {
+    if (node == nullptr) {
+      return 0;
+    }
+
+    const int left_height = height(node->left);
+    const int right_height = height(node->right);
+
+    return std::max(left_height, right_height) + 1;
+  }
   void BinarySearchTree::Traverse(const TraversalAlgorithm &algorithm) const {
     algorithm.Print(std::cout, root_);
   }
