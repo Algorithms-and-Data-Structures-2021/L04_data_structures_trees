@@ -44,6 +44,8 @@ namespace itis {
      */
     int size() const;
 
+    Node* root() const;
+
     // обход дерева на базе указанного алгоритма
     void Traverse(const TraversalAlgorithm &algorithm) const;
 

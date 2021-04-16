@@ -144,6 +144,11 @@ namespace itis {
 
     return std::max(left_height, right_height) + 1;
   }
+
+  Node *BinarySearchTree::root() const {
+    return root_;
+  }
+
   void BinarySearchTree::Traverse(const TraversalAlgorithm &algorithm) const {
     algorithm.Print(std::cout, root_);
   }
