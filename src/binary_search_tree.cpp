@@ -91,26 +91,25 @@ namespace itis {
         Node *right_node = node->right;
         delete node;
         return right_node;
+      }
 
-      } else if (node->right == nullptr) {
+      if (node->right == nullptr) {
 
         // case 2: node with a left child
 
         Node *left_child = node->left;
         delete node;
         return left_child;
-
-      } else {
-
-        // case 3: there are 2 children
-
-        Node *min_node = findMin(node->right);  // the leftmost node in the right sub-tree
-
-        node->key = min_node->key;
-
-        // recursively remove the node with a min key
-        node->right = remove(min_node->key, node->right);
       }
+
+      // case 3: there are 2 children
+
+      Node *min_node = findMin(node->right);  // the leftmost node in the right sub-tree
+
+      node->key = min_node->key;
+
+      // recursively remove the node with a min key
+      node->right = remove(min_node->key, node->right);
     }
 
     return node;
